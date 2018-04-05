@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity
     private Button mGoButton;
     private String mNextAction = ACTION_RESTART_GAME;
     private boolean mPlaying;
-    private int[] mBalloonColors = new int[6];
+    private int[] mBalloonColors = new int[10];
     private int mNextColor, mBalloonsPopped,
             mScreenWidth, mScreenHeight,
             mPinsUsed = 0,
@@ -105,12 +105,17 @@ public class MainActivity extends AppCompatActivity
         updateDisplay();
 
 //      Initialize balloon colors: gold, green and orchid
-        mBalloonColors[0] = Color.argb(255, 255, 215, 0);
+        mBalloonColors[0] = Color.BLACK;
         mBalloonColors[1] = Color.argb(255, 0, 128, 0);
         mBalloonColors[2] = Color.argb(255, 218, 112, 218);
         mBalloonColors[3] = Color.argb(255, 255, 215, 0);
-        mBalloonColors[4] = Color.argb(255, 255, 215, 0);
+        mBalloonColors[4] = Color.CYAN;
+        mBalloonColors[5] = Color.red(255);
+        mBalloonColors[5] = Color.GRAY;
+        mBalloonColors[5] = Color.MAGENTA;
+        mBalloonColors[5] = Color.CYAN;
         mBalloonColors[5] = Color.argb(255, 255, 215, 0);
+
 
 
 //      Get button references
