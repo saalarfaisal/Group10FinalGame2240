@@ -44,22 +44,6 @@
             android:src="@drawable/pin"
             android:tint="@color/pinColor" />
 
-        <ImageView
-            android:id="@+id/pushpin4"
-            android:layout_width="@dimen/pin_size"
-            android:layout_height="@dimen/pin_size"
-            android:contentDescription="@string/popping_pin"
-            android:src="@drawable/pin"
-            android:tint="@color/pinColor" />
-
-        <ImageView
-            android:id="@+id/pushpin5"
-            android:layout_width="@dimen/pin_size"
-            android:layout_height="@dimen/pin_size"
-            android:contentDescription="@string/popping_pin"
-            android:src="@drawable/pin"
-            android:tint="@color/pinColor" />
-
     </LinearLayout>
 
     <!-- Buttons and status displays -->

@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity
     private Button mGoButton;
     private String mNextAction = ACTION_RESTART_GAME;
     private boolean mPlaying;
-    private int[] mBalloonColors = new int[3];
+    private int[] mBalloonColors = new int[6];
     private int mNextColor, mBalloonsPopped,
             mScreenWidth, mScreenHeight,
             mPinsUsed = 0,
@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        getWindow().setBackgroundDrawableResource(R.drawable.modern_background);
+        getWindow().setBackgroundDrawableResource(R.drawable.background);
 
 //      Load the activity layout, which is an empty canvas
         setContentView(R.layout.activity_main);
@@ -98,8 +98,6 @@ public class MainActivity extends AppCompatActivity
         mPinImages.add((ImageView) findViewById(R.id.pushpin1));
         mPinImages.add((ImageView) findViewById(R.id.pushpin2));
         mPinImages.add((ImageView) findViewById(R.id.pushpin3));
-        mPinImages.add((ImageView) findViewById(R.id.pushpin4));
-        mPinImages.add((ImageView) findViewById(R.id.pushpin5));
         mScoreDisplay = (TextView) findViewById(R.id.score_display);
         mLevelDisplay = (TextView) findViewById(R.id.level_display);
 
@@ -110,6 +108,10 @@ public class MainActivity extends AppCompatActivity
         mBalloonColors[0] = Color.argb(255, 255, 215, 0);
         mBalloonColors[1] = Color.argb(255, 0, 128, 0);
         mBalloonColors[2] = Color.argb(255, 218, 112, 218);
+        mBalloonColors[3] = Color.argb(255, 255, 215, 0);
+        mBalloonColors[4] = Color.argb(255, 255, 215, 0);
+        mBalloonColors[5] = Color.argb(255, 255, 215, 0);
+
 
 //      Get button references
         mGoButton = (Button) findViewById(R.id.go_button);
