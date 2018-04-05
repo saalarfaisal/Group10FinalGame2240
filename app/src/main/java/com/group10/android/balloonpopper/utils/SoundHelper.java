@@ -47,7 +47,7 @@ public class SoundHelper {
                 mLoaded = true;
             }
         });
-        mSoundID = mSoundPool.load(activity, R.raw.balloon_pop, 1);
+        mSoundID = mSoundPool.load(activity, R.raw.Bomb+1, 1);
     }
 
     public void playSound(View v) {
