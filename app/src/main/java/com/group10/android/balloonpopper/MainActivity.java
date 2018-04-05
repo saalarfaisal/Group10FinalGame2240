@@ -103,18 +103,6 @@ public class MainActivity extends AppCompatActivity
 //      Display current level and score
         updateDisplay();
 
-//      Initialize balloon colors: gold, green and orchid
-        mBalloonColors[0] = Color.WHITE;
-        mBalloonColors[1] = Color.argb(255, 0, 128, 0);
-        mBalloonColors[2] = Color.argb(255, 218, 112, 218);
-        mBalloonColors[3] = Color.argb(255, 255, 215, 0);
-        mBalloonColors[4] = Color.YELLOW;
-        mBalloonColors[5] = Color.red(199);
-        mBalloonColors[6] = Color.argb( 225,219, 119,250 );
-        mBalloonColors[7] = Color.MAGENTA;
-        mBalloonColors[8] = Color.LTGRAY;
-        mBalloonColors[9] = Color.argb(255, 255, 215, 0);
-
 
 
 //      Get button references
