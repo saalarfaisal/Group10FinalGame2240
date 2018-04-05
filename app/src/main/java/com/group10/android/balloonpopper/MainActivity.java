@@ -1,5 +1,6 @@
 package com.group10.android.balloonpopper;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -29,8 +30,8 @@ public class MainActivity extends AppCompatActivity
 
     private static final String TAG = "MainActivity";
 
-    private static final int BALLOONS_PER_LEVEL = 10;
-    private static final int NUMBER_OF_PINS = 5;
+    private static final int BALLOONS_PER_LEVEL = 12;
+    private static final int NUMBER_OF_PINS = 3;
 
     private static final int MIN_ANIMATION_DELAY = 500;
     private static final int MAX_ANIMATION_DELAY = 1500;
@@ -105,10 +106,10 @@ public class MainActivity extends AppCompatActivity
 //      Display current level and score
         updateDisplay();
 
-//      Initialize balloon colors: red, white and blue
-        mBalloonColors[0] = Color.argb(255, 255, 0, 0);
-        mBalloonColors[1] = Color.argb(255, 0, 255, 0);
-        mBalloonColors[2] = Color.argb(255, 0, 0, 255);
+//      Initialize balloon colors: gold, green and orchid
+        mBalloonColors[0] = Color.argb(255, 255, 215, 0);
+        mBalloonColors[1] = Color.argb(255, 0, 128, 0);
+        mBalloonColors[2] = Color.argb(255, 218, 112, 218);
 
 //      Get button references
         mGoButton = (Button) findViewById(R.id.go_button);
@@ -197,6 +198,7 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+    @SuppressLint("StringFormatMatches")
     private void finishLevel() {
         PreferencesHelper.setCurrentScore(this, mScore);
         PreferencesHelper.setCurrentLevel(this, mLevel);
@@ -234,7 +236,7 @@ public class MainActivity extends AppCompatActivity
         balloon.setY(mScreenHeight + balloon.getHeight());
         mContentView.addView(balloon);
 
-//      Let 'er fly
+//      Lets balloon fly
         int duration = Math.max(MIN_ANIMATION_DURATION, MAX_ANIMATION_DURATION - (mLevel * 1000));
         balloon.releaseBalloon(mScreenHeight, duration);
 
@@ -304,7 +306,7 @@ public class MainActivity extends AppCompatActivity
 
 //          Manage high score locally
             if (PreferencesHelper.isTopScore(this, mScore)) {
-                String message = String.format(getString(R.string.your_top_score_is), mScore);
+                @SuppressLint("StringFormatMatches") String message = String.format(getString(R.string.your_top_score_is), mScore);
                 PreferencesHelper.setTopScore(this, mScore);
                 MyAlertDialog dialog = MyAlertDialog.newInstance(
                         getString(R.string.new_top_score),
@@ -315,7 +317,7 @@ public class MainActivity extends AppCompatActivity
             int completedLevel = mLevel - 1;
             if (PreferencesHelper.isMostLevels(this, completedLevel)) {
                 PreferencesHelper.setPrefMostLevels(this, completedLevel);
-                MyAlertDialog dialog = MyAlertDialog.newInstance(
+                @SuppressLint("StringFormatMatches") MyAlertDialog dialog = MyAlertDialog.newInstance(
                         getString(R.string.more_levels_than_ever),
                         String.format(getString(R.string.you_completed_n_levels), completedLevel));
                 dialog.show(getSupportFragmentManager(), null);
