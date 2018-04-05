@@ -109,11 +109,11 @@ public class MainActivity extends AppCompatActivity
         mBalloonColors[1] = Color.argb(255, 0, 128, 0);
         mBalloonColors[2] = Color.argb(255, 218, 112, 218);
         mBalloonColors[3] = Color.argb(255, 255, 215, 0);
-        mBalloonColors[4] = Color.CYAN;
+        mBalloonColors[4] = Color.MAGENTA;
         mBalloonColors[5] = Color.red(255);
-        mBalloonColors[6] = Color.GRAY;
+        mBalloonColors[6] = Color.argb( 225,219, 119,250 );
         mBalloonColors[7] = Color.MAGENTA;
-        mBalloonColors[8] = Color.CYAN;
+        mBalloonColors[8] = Color.DKGRAY;
         mBalloonColors[9] = Color.argb(255, 255, 215, 0);
 
 
