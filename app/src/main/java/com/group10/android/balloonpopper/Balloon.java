@@ -11,12 +11,14 @@ import android.widget.ImageView;
 
 import com.group10.android.balloonpopper.utils.PixelHelper;
 
-public class Balloon extends ImageView
+// this method implements inner class  and sets value when object is touched.
+public class Balloon extends android.support.v7.widget.AppCompatImageView
         implements View.OnTouchListener,
         Animator.AnimatorListener,
         ValueAnimator.AnimatorUpdateListener {
 
     public static final String TAG = "Balloon";
+
 
     private BalloonListener mListener;
     private ValueAnimator mAnimator;
@@ -26,6 +28,7 @@ public class Balloon extends ImageView
         super(context);
     }
 
+    // setting basic parameter
     public Balloon(Context context, int color, int rawHeight, int level) {
         super(context);
 
@@ -36,7 +39,7 @@ public class Balloon extends ImageView
 
         int rawWidth = rawHeight / 2;
 
-//      Calc balloon height and width as dp
+      // Calc balloon height and width as dp
         int dpHeight = PixelHelper.pixelsToDp(rawHeight, context);
         int dpWidth = PixelHelper.pixelsToDp(rawWidth, context);
         ViewGroup.LayoutParams params =
@@ -45,7 +48,7 @@ public class Balloon extends ImageView
 
         setOnTouchListener(this);
     }
-
+    // value setting on balloon
     public void releaseBalloon(int screenHeight, int duration) {
         mAnimator = new ValueAnimator();
         mAnimator.setDuration(duration);
@@ -56,7 +59,7 @@ public class Balloon extends ImageView
         mAnimator.addUpdateListener(this);
         mAnimator.start();
     }
-
+    // when not popped
     @Override
     public void onAnimationUpdate(ValueAnimator animation) {
         if (!mPopped) {
