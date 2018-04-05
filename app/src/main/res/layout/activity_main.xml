@@ -51,7 +51,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@color/lightGrey">
+        android:background="@color/colorPrimaryDark">
 
         <Button
             android:id="@+id/go_button"
@@ -60,6 +60,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
+            android:textColor="@color/lightGrey"
             android:text="@string/play_game" />
 
         <LinearLayout
@@ -77,6 +78,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/level_label"
                 android:textSize="@dimen/status_text_size"
+                android:textColor="@color/lightGrey"
                 android:textStyle="bold"
                 tools:ignore="RelativeOverlap" />
 
@@ -87,6 +89,7 @@
                 android:layout_marginEnd="32dp"
                 android:gravity="end"
                 android:text="@string/maxNumber"
+                android:textColor="@color/lightGrey"
                 android:textSize="@dimen/status_text_size"
                 android:textStyle="bold" />
 
@@ -96,6 +99,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/score_label"
                 android:textSize="@dimen/status_text_size"
+                android:textColor="@color/lightGrey"
                 android:textStyle="bold"
                 tools:ignore="RelativeOverlap" />
 
@@ -106,6 +110,7 @@
                 android:layout_marginEnd="16dp"
                 android:gravity="end"
                 android:text="@string/maxNumber"
+                android:textColor="@color/lightGrey"
                 android:textSize="@dimen/status_text_size"
                 android:textStyle="bold" />
         </LinearLayout>
