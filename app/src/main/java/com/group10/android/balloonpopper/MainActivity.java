@@ -46,11 +46,11 @@ public class MainActivity extends AppCompatActivity
     private TextView Scores, Level;
     private Button go;
     private String Next = start;
-    private boolean mPlaying;
+    private boolean play;
     private int[] mBalloonColors = new int[10];
     private int mNextColor, balloonImagePopped,
-            mScreenWidth, mScreenHeight,
-            mPinsUsed = 0,
+            ScrnWdth, ScrnHght,
+            usedPins = 0,
             mScore = 0, mLevel = 1;
 
     @Override
@@ -83,8 +83,8 @@ public class MainActivity extends AppCompatActivity
                 @Override
                 public void onGlobalLayout() {
                     content.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                    mScreenWidth = content.getWidth();
-                    mScreenHeight = content.getHeight();
+                    ScrnWdth = content.getWidth();
+                    ScrnHght = content.getHeight();
                 }
             });
         }
@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity
         go.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mPlaying) {
+                if (play) {
                     stopGame();
                 } else {
                     switch (Next) {
@@ -171,7 +171,7 @@ public class MainActivity extends AppCompatActivity
         go.setText(R.string.stop_game);
 
 //      Reset pins
-        mPinsUsed = 0;
+        usedPins = 0;
         for (ImageView pin : pinImage) {
             pin.setImageResource(R.drawable.pin);
         }
@@ -184,7 +184,7 @@ public class MainActivity extends AppCompatActivity
 
     private void stopGame() {
         go.setText(R.string.play_game);
-        mPlaying = false;
+        play = false;
         gameOver(false);
     }
 
@@ -195,7 +195,7 @@ public class MainActivity extends AppCompatActivity
         go.setText(R.string.stop_game);
 
 //      Reset flags for new level
-        mPlaying = true;
+        play = true;
         balloonImagePopped = 0;
 
 //      integer arg for BalloonLauncher indicates the level
@@ -212,7 +212,7 @@ public class MainActivity extends AppCompatActivity
                 String.format(getString(R.string.you_finished_level_n), mLevel),
                 Toast.LENGTH_LONG).show();
 
-        mPlaying = false;
+        play = false;
         mLevel++;
         go.setText(String.format("Start level %s", mLevel));
         Next = NextLevel;
@@ -239,12 +239,12 @@ public class MainActivity extends AppCompatActivity
 
 //      Set balloon vertical position and dimensions, add to container
         balloon.setX(x);
-        balloon.setY(mScreenHeight + balloon.getHeight());
+        balloon.setY(ScrnHght + balloon.getHeight());
         content.addView(balloon);
 
 //      Lets balloon fly
         int duration = Math.max(minimumTimeAnimation, maximumTimeAnimation - (mLevel * 1000));
-        balloon.releaseBalloon(mScreenHeight, duration);
+        balloon.releaseBalloon(ScrnHght, duration);
 
     }
 
@@ -262,12 +262,12 @@ public class MainActivity extends AppCompatActivity
         if (userTouch) {
             mScore++;
         } else {
-            mPinsUsed++;
-            if (mPinsUsed <= pinImage.size()) {
-                pinImage.get(mPinsUsed - 1)
+            usedPins++;
+            if (usedPins <= pinImage.size()) {
+                pinImage.get(usedPins - 1)
                         .setImageResource(R.drawable.pin_off);
             }
-            if (mPinsUsed == AmountOfPins) {
+            if (usedPins == AmountOfPins) {
                 gameOver(true);
                 return;
             } else {
@@ -303,8 +303,8 @@ public class MainActivity extends AppCompatActivity
         }, 2000);
 
 //      Reset for a new game
-        mPlaying = false;
-        mPinsUsed = 0;
+        play = false;
+        usedPins = 0;
         go.setText(R.string.play_game);
         Next = start;
 
@@ -351,13 +351,13 @@ public class MainActivity extends AppCompatActivity
             int minDelay = maxDelay / 2;
 
 //          Keep on launching balloons until either
-//              1) we run out or 2) the mPlaying flag is set to false
+//              1) we run out or 2) the play flag is set to false
             int balloonsLaunched = 0;
-            while (mPlaying && balloonsLaunched < BalloonLevel) {
+            while (play && balloonsLaunched < BalloonLevel) {
 
 //              Get a random horizontal position for the next balloon
                 Random random = new Random(new Date().getTime());
-                int xPosition = random.nextInt(mScreenWidth - 200);
+                int xPosition = random.nextInt( ScrnWdth - 200);
                 publishProgress(xPosition);
                 balloonsLaunched++;
 

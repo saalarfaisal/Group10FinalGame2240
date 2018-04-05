@@ -20,9 +20,9 @@ public class Balloon extends android.support.v7.widget.AppCompatImageView
     public static final String TAG = "Balloon";
 
 
-    private BalloonListener mListener;
-    private ValueAnimator mAnimator;
-    private boolean mPopped;
+    private BalloonListener Listen;
+    private ValueAnimator animation;
+    private boolean pooped;
 
     public Balloon(Context context) {
         super(context);
@@ -32,7 +32,7 @@ public class Balloon extends android.support.v7.widget.AppCompatImageView
     public Balloon(Context context, int color, int rawHeight, int level) {
         super(context);
 
-        this.mListener = (BalloonListener) context;
+        this.Listen = (BalloonListener) context;
 
         this.setImageResource(com.group10.android.balloonpopper.R.drawable.balloon);
         this.setColorFilter(color);
@@ -50,19 +50,19 @@ public class Balloon extends android.support.v7.widget.AppCompatImageView
     }
     // value setting on balloon
     public void releaseBalloon(int screenHeight, int duration) {
-        mAnimator = new ValueAnimator();
-        mAnimator.setDuration(duration);
-        mAnimator.setFloatValues(screenHeight, 0f);
-        mAnimator.setInterpolator(new LinearInterpolator());
-        mAnimator.setTarget(this);
-        mAnimator.addListener(this);
-        mAnimator.addUpdateListener(this);
-        mAnimator.start();
+        animation = new ValueAnimator();
+        animation.setDuration(duration);
+        animation.setFloatValues(screenHeight, 0f);
+        animation.setInterpolator(new LinearInterpolator());
+        animation.setTarget(this);
+        animation.addListener(this);
+        animation.addUpdateListener(this);
+        animation.start();
     }
     // when not popped
     @Override
     public void onAnimationUpdate(ValueAnimator animation) {
-        if (!mPopped) {
+        if (!pooped) {
             setY((Float) animation.getAnimatedValue());
         }
     }
@@ -78,8 +78,8 @@ public class Balloon extends android.support.v7.widget.AppCompatImageView
     @Override
     public void onAnimationEnd(Animator animation) {
 //      This means the balloon got to the top of the screen
-        if (!mPopped) {
-            mListener.popBalloon(this, false);
+        if (!pooped) {
+            Listen.popBalloon(this, false);
         }
     }
 
@@ -98,16 +98,16 @@ public class Balloon extends android.support.v7.widget.AppCompatImageView
 //      Call the activity's popBalloon() method
 //      Cancel the animation so the ValueAnimator doesn't keep going
 //      Flip the popped flag
-        if (!mPopped && event.getAction() == MotionEvent.ACTION_DOWN) {
-            mListener.popBalloon(this, true);
-            mPopped = true;
-            mAnimator.cancel();
+        if (!pooped && event.getAction() == MotionEvent.ACTION_DOWN) {
+            Listen.popBalloon(this, true);
+            pooped = true;
+            animation.cancel();
         }
         return true;
     }
 
     public void setPopped(boolean popped) {
-        this.mPopped = popped;
+        this.pooped = popped;
     }
 
 }
