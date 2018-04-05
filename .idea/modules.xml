@@ -3,9 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://C:\Users\Saalar\Desktop\FinalGame2240\BalloonPopper.iml" filepath="C:\Users\Saalar\Desktop\FinalGame2240\BalloonPopper.iml" />
-      <module fileurl="file://C:\Users\gokha\Group10FinalGame2240\FinalGame2240.iml" filepath="C:\Users\gokha\Group10FinalGame2240\FinalGame2240.iml" />
+      <module fileurl="file://$PROJECT_DIR$/FinalGame2240.iml" filepath="$PROJECT_DIR$/FinalGame2240.iml" />
       <module fileurl="file://$PROJECT_DIR$/Group10FinalGame2240.iml" filepath="$PROJECT_DIR$/Group10FinalGame2240.iml" />
-      <module fileurl="file://C:\Users\gokha\Group10FinalGame2240\app\app.iml" filepath="C:\Users\gokha\Group10FinalGame2240\app\app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
 </project>
