@@ -15,8 +15,8 @@ public class SoundHelper {
     private final static String TAG = "SoundHelper";
 
     private MediaPlayer musicPlayer;
-    private SoundPool mSoundPool;
-    private int mSoundID;
+    private SoundPool soundPool;
+    private int soundID;
     private boolean mLoaded;
     private float mVolume;
 
@@ -35,26 +35,26 @@ public class SoundHelper {
                     .setUsage(AudioAttributes.USAGE_GAME)
                     .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
                     .build();
-            mSoundPool = new SoundPool.Builder().setAudioAttributes(audioAttrib).setMaxStreams(6).build();
+            soundPool = new SoundPool.Builder().setAudioAttributes(audioAttrib).setMaxStreams(6).build();
         } else {
             //noinspection deprecation
-            mSoundPool = new SoundPool(6, AudioManager.STREAM_MUSIC, 0);
+            soundPool = new SoundPool(6, AudioManager.STREAM_MUSIC, 0);
         }
 
-        mSoundPool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
+        soundPool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
             @Override
             public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {
                 mLoaded = true;
             }
         });
-        mSoundID = mSoundPool.load(activity, R.raw.Bomb+1, 1);
+        soundID = soundPool.load(activity, R.raw.balloon_pop, 1);
     }
 
     public void playSound(View v) {
 
         // Is the sound loaded does it already play?
         if (mLoaded) {
-            mSoundPool.play(mSoundID, mVolume, mVolume, 1, 0, 1f);
+            soundPool.play( soundID, mVolume, mVolume, 1, 0, 1f);
         }
     }
 
