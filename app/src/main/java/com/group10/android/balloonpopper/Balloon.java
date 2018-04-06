@@ -24,7 +24,6 @@ public class Balloon extends android.support.v7.widget.AppCompatImageView
     private BalloonListener Listen;
     private ValueAnimator animation;
     private boolean pooped;
-    private int[] BalloonChange = new int[2];
 
     public Balloon(Context context) {
         super(context);
