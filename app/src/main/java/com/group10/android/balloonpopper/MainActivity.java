@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity
     private Button go;
     private String Next = start;
     private boolean play;
-    private int[] mBalloonColors = new int[10];
+    private int[] mBalloonColors = new int[3];
     private int mNextColor, balloonImagePopped,
             ScrnWdth, ScrnHght,
             usedPins = 0,

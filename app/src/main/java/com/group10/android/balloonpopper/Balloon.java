@@ -20,9 +20,11 @@ public class Balloon extends android.support.v7.widget.AppCompatImageView
     public static final String TAG = "Balloon";
 
 
+
     private BalloonListener Listen;
     private ValueAnimator animation;
     private boolean pooped;
+    private int[] BalloonChange = new int[2];
 
     public Balloon(Context context) {
         super(context);
@@ -34,7 +36,9 @@ public class Balloon extends android.support.v7.widget.AppCompatImageView
 
         this.Listen = (BalloonListener) context;
 
-        this.setImageResource(com.group10.android.balloonpopper.R.drawable.balloon);
+        this.setImageResource(com.group10.android.balloonpopper.R.drawable.balloon1);
+
+
         this.setColorFilter(color);
 
         int rawWidth = rawHeight / 2;
