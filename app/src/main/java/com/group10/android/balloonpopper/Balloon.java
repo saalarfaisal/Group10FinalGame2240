@@ -1,3 +1,6 @@
+// TODO: 06/04/18 :Final Project for COIS 2240 SOFTWARE DESIGN AND MODELLING GROUP 10
+//todo: Group 10 - Nikhil Pai Ganesh - 0595517 ; Saalar Faisal - ; Gokhan Karasu - 0631945; Isaiah Mutekanga- // 
+
 package com.group10.android.balloonpopper;
 
 import android.animation.Animator;
