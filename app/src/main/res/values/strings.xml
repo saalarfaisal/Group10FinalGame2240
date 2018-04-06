@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Balloon Popper</string>
+    <string name="app_name">Anchor Point</string>
     <string name="play_game">Play game</string>
     <string name="stop_game">Stop game</string>
     <string name="score_label">Score:</string>
