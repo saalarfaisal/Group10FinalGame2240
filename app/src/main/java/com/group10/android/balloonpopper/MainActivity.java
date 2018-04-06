@@ -1,4 +1,5 @@
 package com.group10.android.balloonpopper;
+// importing the libraries.
 
 import android.annotation.SuppressLint;
 import android.graphics.Color;
@@ -24,22 +25,23 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
+// Main class named MainActivity. It extends AppCompatActivity
 public class MainActivity extends AppCompatActivity
         implements Balloon.BalloonListener {
 
-    private static final String TAG = "MainActivity";
+    private static final String TAG = "MainActivity"; // String Variable for implementing the main activity
 
-    private static final int BalloonLevel = 12;
-    private static final int AmountOfPins = 3;
+    private static final int BalloonLevel = 12; // integer variable named BalloonLevel for changing the levels
+    private static final int AmountOfPins = 3; // integer variable for number of pins in the game which basically works like lives
 
-    private static final int MinimumDelayinAnimation = 500;
-    private static final int maximumDelayinAnimation = 1500;
-    private static final int minimumTimeAnimation = 1000;
-    private static final int maximumTimeAnimation = 8000;
-    private static final String NextLevel = "NextLevel";
-    private static final String start = "NextLevelStart_game";
+    private static final int MinimumDelayinAnimation = 500; // integer Variable to determine the minimum delay the animation that makes the balloons rise
+    private static final int maximumDelayinAnimation = 1500; // integer Variable to determine the maximum delay in the animation that makes the ballon rise
+    private static final int minimumTimeAnimation = 1000; // integerVariable for minimum time the balloons takes rise
+    private static final int maximumTimeAnimation = 8000; // integer variable for maximum time the ballonos take to rise.
+    private static final String NextLevel = "NextLevel"; // string variable to move to the next level
+    private static final String start = "NextLevelStart_game"; // string variable to start the game.
 
-    private ViewGroup content;
+    private ViewGroup content; //
     private SoundHelper sound;
     private List<ImageView> pinImage = new ArrayList<>();
     private List<Balloon> balloonImage = new ArrayList<>();
