@@ -14,7 +14,7 @@ import android.widget.ImageView;
 
 import com.group10.android.balloonpopper.utils.PixelHelper;
 
-// this method implements inner class  and sets value when object is touched.
+// method  to implement inner class  and sets value when object is touched.
 public class Balloon extends android.support.v7.widget.AppCompatImageView
         implements View.OnTouchListener,
         Animator.AnimatorListener,
