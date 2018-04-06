@@ -1,3 +1,10 @@
+// TODO: 06/04/18 Final Project for COIS 2240 SOFTWARE DESIGN AND MODELLING GROUP 10
+//todo: Group 10 - Nikhil Pai Ganesh - 0595517 ; Saalar Faisal - ; Gokhan Karasu - 0631945; Isaiah Mutekanga- //
+// Description : Android App for a simple single player game with animations, Java Control and Database.
+// The game produces hot air balloon and the user has to crash them before it reaches to the top of the screen to gain points.
+
+
+
 package com.group10.android.balloonpopper;
 // importing the libraries.
 
@@ -41,28 +48,34 @@ public class MainActivity extends AppCompatActivity
     private static final String NextLevel = "NextLevel"; // string variable to move to the next level
     private static final String start = "NextLevelStart_game"; // string variable to start the game.
 
-    private ViewGroup content; //
-    private SoundHelper sound;
-    private List<ImageView> pinImage = new ArrayList<>();
-    private List<Balloon> balloonImage = new ArrayList<>();
-    private TextView Scores, Level;
-    private Button go;
-    private String Next = start;
-    private boolean play;
+    private ViewGroup content; //Variable for content
+    private SoundHelper sound; // Variable for Sound
+    private List<ImageView> pinImage = new ArrayList<>(); // Variable for array list of pin images
+    private List<Balloon> balloonImage = new ArrayList<>(); // Variable for array list of balloon image
+    private TextView Scores, Level; // Text variable to print the scores and level
+    private Button go; // Button Variable for the user to play
+    private String Next = start; // String Variable to show that the button changes from play game to next level after each level
+    private boolean play; // Boolean string to either play the game or stop the game.
     private int[] mBalloonColors = new int[3];
-    private int mNextColor, balloonImagePopped,
-            ScrnWdth, ScrnHght,
-            usedPins = 0,
-            mScore = 0, mLevel = 1;
+    private int mNextColor, balloonImagePopped, // integer variable so multiple objects come at the same time
+            ScrnWdth, ScrnHght,// variable to set the height and width of the screen
+            usedPins = 0,  // to display the pins
+            score  = 0, level = 1; // to display score and levels
+
+    // Method: OnCreate
+    // Method type: Void
+    // Returns: boolean = false in reference to Get Background.
+    // Description: Sets up background image and makes the game run in fullscreen.
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        getWindow().setBackgroundDrawableResource(R.drawable.bground);
+        getWindow().setBackgroundDrawableResource(R.drawable.bground); //App background is set here
 
-//      Load the activity layout, which is an empty canvas
-        setContentView(R.layout.activity_main);
+//      To load the layout for the activity (empty template)
+        setContentView(R.layout.activity_main); // Obtaining the design from activity_main- XML file that contains the design and aspects of the app.
+
 
 //      Get background reference.
         content = (ViewGroup) findViewById(R.id.content_view);
@@ -70,60 +83,64 @@ public class MainActivity extends AppCompatActivity
         content.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {// if the app is in action then set it to fullscreen
                     setToFullScreen();
                 }
-                return false;
+                return false; // // return false - other wise Don't
             }
         });
-        setToFullScreen();
+        setToFullScreen(); // calling the full screen method
 
-//      After the layout is complete, get screen dimensions from the layout.
+//      Get screen dimensions from the layout.
         ViewTreeObserver viewTreeObserver = content.getViewTreeObserver();
         if (viewTreeObserver.isAlive()) {
             viewTreeObserver.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
                 @Override
                 public void onGlobalLayout() {
                     content.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                    ScrnWdth = content.getWidth();
-                    ScrnHght = content.getHeight();
+                    ScrnWdth = content.getWidth(); // Obtaining the width of the screen
+                    ScrnHght = content.getHeight(); // Obtaining the height of the screen
                 }
             });
         }
 
-//      Initialize sound helper class that wraps SoundPool for audio effects
-        sound = new SoundHelper(this);
+//      For sound effects and background music.
+        sound = new SoundHelper(this); // linking to the class SoundHelper
         sound.prepareMusicPlayer(this);
 
-//      Initialize display elements
+//      Design elements for the screen.
+
+        // calling the image of the pin that we created in XML
         pinImage.add((ImageView) findViewById(R.id.pushpin1));
         pinImage.add((ImageView) findViewById(R.id.pushpin2));
         pinImage.add((ImageView) findViewById(R.id.pushpin3));
+
+        // Portray the text for score change and level change
         Scores = (TextView) findViewById(R.id.score_display);
         Level = (TextView) findViewById(R.id.level_display);
 
 //      Display current level and score
-        updateDisplay();
+        updateDisplay(); // calling the changes we made in the display
 
 
 
 //      Get button references
-        go = (Button) findViewById(R.id.go_button);
+        go = (Button) findViewById(R.id.go_button); // button to play the game.
 
 //      Handle button click
-        if (go == null) throw new AssertionError();
+        if (go == null) throw new AssertionError(); // if the button isn't there then show error
         go.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (play) {
-                    stopGame();
-                } else {
-                    switch (Next) {
-                        case start:
-                            startGame();
+                if (play) { // if play is being clicked
+                    stopGame(); // stop the game
+                } else { // otherwise
+                    switch (Next) { // if Next is clicked
+                        case start: // in case start is being clicked
+                            startGame(); // start the game
                             break;
-                        case NextLevel:
-                            start();
+                        case NextLevel: // if next level is clicked
+                            start();  // start the next level of the ga,e
                             break;
                     }
                 }
@@ -133,13 +150,18 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        stopGame();
+        stopGame(); // stop game called
         super.onBackPressed();
     }
 
+//Method: setToFullScreen
+    //method type : void
+    // description sets the app to full screen
+
+
     private void setToFullScreen() {
 
-        //      Set full screen mode
+        // sets to full screen mode.
         content.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE
                 | View.SYSTEM_UI_FLAG_FULLSCREEN
                 | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
@@ -148,13 +170,16 @@ public class MainActivity extends AppCompatActivity
                 | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
     }
 
+    // Method: startGame
+    // Description: Sets game logic
+
     private void startGame() {
 
         setToFullScreen();
 
 //      Reset score and level
-        mScore = 0;
-        mLevel = 1;
+        score  = 0;
+        level = 1;
 
 //      Update display
         updateDisplay();
@@ -190,34 +215,34 @@ public class MainActivity extends AppCompatActivity
 
 //      integer arg for BalloonLauncher indicates the level
         BalloonLauncher mLauncher = new BalloonLauncher();
-        mLauncher.execute(mLevel);
+        mLauncher.execute(level);
 
     }
 
     @SuppressLint("StringFormatMatches")
     private void finishLevel() {
-        PreferencesHelper.setCurrentScore(this, mScore);
-        PreferencesHelper.setCurrentLevel(this, mLevel);
+        PreferencesHelper.setCurrentScore(this, score );
+        PreferencesHelper.setCurrentLevel(this, level);
         Toast.makeText(MainActivity.this,
-                String.format(getString(R.string.you_finished_level_n), mLevel),
+                String.format(getString(R.string.you_finished_level_n), level),
                 Toast.LENGTH_LONG).show();
 
         play = false;
-        mLevel++;
-        go.setText(String.format("Start level %s", mLevel));
+        level++;
+        go.setText(String.format("Start level %s", level));
         Next = NextLevel;
     }
 
     private void updateDisplay() {
-        Scores.setText(String.valueOf(mScore));
-        Level.setText(String.valueOf(mLevel));
+        Scores.setText(String.valueOf(score ));
+        Level.setText(String.valueOf(level));
     }
 
     private void launchBalloon(int x) {
 
 //      Balloon is launched from activity upon progress update from the AsyncTask
 //      Create new imageview and set its tint color
-        Balloon balloon = new Balloon(this, mBalloonColors[mNextColor], 150, mLevel);
+        Balloon balloon = new Balloon(this, mBalloonColors[mNextColor], 150, level);
         balloonImage.add(balloon);
 
 //      Reset color for next balloon
@@ -233,7 +258,7 @@ public class MainActivity extends AppCompatActivity
         content.addView(balloon);
 
 //      Lets balloon fly
-        int duration = Math.max(minimumTimeAnimation, maximumTimeAnimation - (mLevel * 1000));
+        int duration = Math.max(minimumTimeAnimation, maximumTimeAnimation - (level * 1000));
         balloon.releaseBalloon(ScrnHght, duration);
 
     }
@@ -250,7 +275,7 @@ public class MainActivity extends AppCompatActivity
 //      If balloon pop was caused by user, it's a point; otherwise,
 //      a balloon hit the top of the screen and it's a life lost
         if (userTouch) {
-            mScore++;
+            score ++;
         } else {
             usedPins++;
             if (usedPins <= pinImage.size()) {
@@ -301,16 +326,16 @@ public class MainActivity extends AppCompatActivity
         if (allPinsUsed) {
 
 //          Manage high score locally
-            if (PreferencesHelper.isTopScore(this, mScore)) {
-                @SuppressLint("StringFormatMatches") String message = String.format(getString(R.string.your_top_score_is), mScore);
-                PreferencesHelper.setTopScore(this, mScore);
+            if (PreferencesHelper.isTopScore(this, score )) {
+                @SuppressLint("StringFormatMatches") String message = String.format(getString(R.string.your_top_score_is), score );
+                PreferencesHelper.setTopScore(this, score );
                 MyAlertDialog dialog = MyAlertDialog.newInstance(
                         getString(R.string.new_top_score),
                         message);
                 dialog.show(getSupportFragmentManager(), null);
             }
 
-            int completedLevel = mLevel - 1;
+            int completedLevel = level - 1;
             if (PreferencesHelper.isMostLevels(this, completedLevel)) {
                 PreferencesHelper.setPrefMostLevels(this, completedLevel);
                 @SuppressLint("StringFormatMatches") MyAlertDialog dialog = MyAlertDialog.newInstance(
